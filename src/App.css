@@ -1,0 +1,93 @@
+body {
+  margin: 0;
+}
+.App {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.pizza {
+  border: 1px solid black;
+  max-width: 300px;
+  height: 490px;
+}
+.image {
+  max-width: 300px;
+  object-fit: cover;
+  height: 300px;
+}
+.pizza-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 200px;
+  /* padding-left: 100px;
+ padding-right: 100px; */
+}
+.cart {
+  margin: 30px auto;
+  /* display: flex; */
+  background-color: orange;
+  flex-direction: column;
+  height: min-content;
+  width: 700px;
+  /* align-items: flex-start; */
+  /* justify-content: center; */
+  border: 1px solid black;
+  flex-wrap: wrap;
+}
+.image-cart {
+  
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: 2px solid black;
+  margin-left: 10px;
+}
+.item {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  flex-wrap: wrap;
+}
+.btn {
+  display: flex;
+  width: 25%;
+  margin-left:20px ;
+  cursor: pointer;
+  border: none;
+  background-color:orange;
+  margin-right: 15px;
+}
+.total-price{
+  /* display: flex; */
+  padding-top: 20px;
+  padding-bottom: 20px;
+  /* padding-left: 22%; */
+  font-size: 20px;
+  font-weight: 700;
+  /* border-top: 2px solid black; */
+}
+.name,
+.btn{
+  width: 25%;
+}
+.clear-button{
+  border-radius: 5px;
+ display: flex;
+ justify-content: flex-end;
+ margin-right: 30px;
+margin-top: 10px;
+  
+  font-size: 18px;
+ 
+  cursor: pointer;
+}
