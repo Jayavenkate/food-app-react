@@ -12,6 +12,7 @@ import { Routes, Route, Link, useNavigate, Navigate } from "react-router-dom";
 import { SignUp } from "./SignUp";
 import { Cart } from "./Cart";
 import { useEffect, useState } from "react";
+import { Payment } from "./Payment";
 
 export default function App() {
   const [pizzalist, setPizzaList] = useState([]);
@@ -35,7 +36,7 @@ export default function App() {
   const handlecartClear = () => {
     setCartItem([]);
   };
-  
+
   return (
     <div className="App">
       <div>
@@ -69,6 +70,8 @@ export default function App() {
             }
           />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/payment" element={<Payment />} />
+
           <Route
             path="/cart"
             element={

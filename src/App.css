@@ -2,6 +2,7 @@ body {
   margin: 0;
 }
 .App {
+  flex-wrap: wrap;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -29,15 +30,17 @@ body {
 }
 .cart {
   margin: 30px auto;
-  /* display: flex; */
+  display: flex;
+  flex-wrap: wrap;
   background-color: orange;
   flex-direction: column;
   height: min-content;
   width: 700px;
-  /* align-items: flex-start; */
-  /* justify-content: center; */
+  align-items:center;
+  justify-content: center;
   border: 1px solid black;
   flex-wrap: wrap;
+  padding-bottom: 30px;
 }
 .image-cart {
   
@@ -84,10 +87,40 @@ body {
   border-radius: 5px;
  display: flex;
  justify-content: flex-end;
- margin-right: 30px;
+ /* margin-right: 90px; */
+ margin-left: 50%;
 margin-top: 10px;
   
   font-size: 18px;
  
+  cursor: pointer;
+}
+.payment{
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  padding-top: 100px;
+}
+.card-container{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+width: 400px;
+margin: 0 auto;
+gap: 16px;
+justify-content: center;
+
+}
+.signup{
+  /* padding-left: 50px; */
+  margin-left: 700px;
+  margin-top: 100px;
+  margin-right: 700px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+   
+}
+.sign-btn{
   cursor: pointer;
 }
