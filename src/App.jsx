@@ -13,15 +13,29 @@ import { SignUp } from "./SignUp";
 import { Cart } from "./Cart";
 import { useEffect, useState } from "react";
 import { Payment } from "./Payment";
+import { Login } from "./Login";
+import { Home } from "./Home";
+
+function checkAuth(data) {
+  if (data.status === 401) {
+    throw Error("unauthorized");
+  } else {
+    return data.json();
+  }
+}
 
 export default function App() {
   const [pizzalist, setPizzaList] = useState([]);
   const getPizza = () => {
     fetch("http://localhost:7000/pizzalist", {
       method: "GET",
+      headers: {
+        "x-auth-token": localStorage.getItem("token"),
+      },
     })
-      .then((data) => data.json())
+      .then((data) => checkAuth(data))
       .then((pz) => setPizzaList(pz));
+    // .catch(err => logout());
   };
   useEffect(() => getPizza(), []);
 
@@ -45,7 +59,7 @@ export default function App() {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               PIZZA APP
             </Typography>
-            <Button color="inherit" onClick={() => navigate("/pizzalist")}>
+            <Button color="inherit" onClick={() => navigate("/")}>
               Home
             </Button>
 
@@ -71,6 +85,8 @@ export default function App() {
           />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/payment" element={<Payment />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Home />} />
 
           <Route
             path="/cart"

@@ -2,62 +2,53 @@ import { Button, Card, CardContent } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import Checkbox from "@mui/material/Checkbox";
+
 import * as yup from "yup";
 import { useState } from "react";
 
 const formValidationSchema = yup.object({
-  name: yup.string().required("required"),
   email: yup.string().email().required("Email address is required"),
   password: yup.string().required("password required"),
   // password: yup.string().required("password required").min(8),
 });
-export function SignUp() {
-  // const [show,setshow]= useState(false);
+export function Login() {
   const navigate = useNavigate();
-  const reDirect =()=>{
-    navigate("/login");
-  }
-  // const togglePassword=()=>{
-  //   setshow(!show);
-  // }
+const [formState,setFormState]=useState("success");
   const { values, handleSubmit, handleChange, handleBlur, touched, errors } =
     useFormik({
       initialValues: {
-        name: "",
         email: "",
         password: "",
       },
       validationSchema: formValidationSchema,
       onSubmit: async (values) => {
         console.log(values);
-        const data = await fetch("http://localhost:7000/signup",{
-          method:"POST",
-          headers :{
-            "content-type":"application/json"
+        const data = await fetch("http://localhost:7000/login", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
           },
-          body:JSON.stringify(values),
+          body: JSON.stringify(values),
         });
-        const result = await data.json();
-        console.log(data);
-        navigate("/login")
+        if(data.status===401){
+          console.log("error");
+          setFormState("error");
+        }else{
+          setFormState("success");
+          
+          const result = await data.json();
+          console.log("success", result);
+          localStorage.setItem("token", result.token);
+          navigate("/pizzalist");
+        }
+       
       },
     });
   return (
     <form onSubmit={handleSubmit}>
       <Card className="signup" elevation={4}>
-        <h2>SignUp </h2>
+        <h2>Login </h2>
         <CardContent className="card-container">
-          <TextField
-            name="name"
-            value={values.name}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            label="Name"
-            variant="outlined"
-            error={touched.name && touched.error}
-            helperText={touched.name && errors.name ? errors.name : null}
-          />
           <TextField
             name="email"
             value={values.email}
@@ -83,20 +74,22 @@ export function SignUp() {
           {/* <span>
           <Checkbox onClick={togglePassword}aria-label="Checkbox demo"/>
             show password</span> */}
-          <Button
-            type="submit"
-            color="success"
-            variant="contained"
-            sx={{ width: "400px" }}
-          >
-            Register
+          <Button color ={formState}type="submit" variant="contained" sx={{ width: "400px" }}>
+            {formState==="success"?"Submit":"Retry"}
           </Button>
-          <small> already registered ?</small>
+          <small>
+            forget password?
+            <hr style={{ opacity: 0.5, width: "70%" }} />
+          </small>
         </CardContent>
 
-        <h5 className="sign-btn" onClick={() => reDirect()}>
-          Sign in
-        </h5>
+        <Button
+          color="success"
+          variant="contained"
+          onClick={() => navigate("/signup")}
+        >
+          Create Account
+        </Button>
       </Card>
     </form>
   );
