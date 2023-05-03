@@ -9,8 +9,8 @@ import { API } from "./global";
 
 const formValidationSchema = yup.object({
   email: yup.string().email().required("Email address is required"),
-  password: yup.string().required("password required"),
-  // password: yup.string().required("password required").min(8),
+
+  password: yup.string().required("password required").min(8),
 });
 export function SetPassword() {
   const navigate = useNavigate();
