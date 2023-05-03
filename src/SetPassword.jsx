@@ -11,10 +11,9 @@ const formValidationSchema = yup.object({
   password: yup.string().required("password required"),
   // password: yup.string().required("password required").min(8),
 });
-export function Login() {
+export function SetPassword() {
   const navigate = useNavigate();
 
-  const [formState, setFormState] = useState("success");
   const { values, handleSubmit, handleChange, handleBlur, touched, errors } =
     useFormik({
       initialValues: {
@@ -24,7 +23,7 @@ export function Login() {
       validationSchema: formValidationSchema,
       onSubmit: async (values) => {
         console.log(values);
-        const data = await fetch("http://localhost:7000/login", {
+        const data = await fetch("http://localhost:7000/setpassword", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -33,21 +32,15 @@ export function Login() {
         });
         if (data.status === 401) {
           console.log("error");
-          setFormState("error");
         } else {
-          setFormState("success");
-
-          const result = await data.json();
-          console.log("success", result);
-          localStorage.setItem("token", result.token);
-          navigate("/pizzalist");
+          navigate("/login");
         }
       },
     });
   return (
     <form onSubmit={handleSubmit}>
       <Card className="signup" elevation={4}>
-        <h2>Login </h2>
+        <h2>Reset your Password </h2>
         <CardContent className="card-container">
           <TextField
             name="email"
@@ -74,30 +67,11 @@ export function Login() {
           {/* <span>
           <Checkbox onClick={togglePassword}aria-label="Checkbox demo"/>
             show password</span> */}
-          <Button
-            color={formState}
-            type="submit"
-            variant="contained"
-            sx={{ width: "400px" }}
-          >
-            {formState === "success" ? "Submit" : "Retry"}
-          </Button>
-          <small
-            sx={{ cursor: "pointer" }}
-            onClick={() => navigate("/login/forgetpassword")}
-          >
-            forget password?
-            <hr style={{ opacity: 0.5, width: "70%" }} />
-          </small>
-        </CardContent>
 
-        <Button
-          color="success"
-          variant="contained"
-          onClick={() => navigate("/signup")}
-        >
-          Create Account
-        </Button>
+          <Button color="secondary" variant="contained">
+            Confirm
+          </Button>
+        </CardContent>
       </Card>
     </form>
   );

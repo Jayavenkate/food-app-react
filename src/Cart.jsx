@@ -3,10 +3,31 @@ import ClearIcon from "@mui/icons-material/Clear";
 import { Button } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import { useNavigate } from "react-router-dom";
+import StripeCheckout from "react-stripe-checkout";
 
-export function Cart({ cartItem, addToCart, removeFromCart, handlecartClear }) {
- const navigate = useNavigate();
+export function Cart({ cartItem, removeFromCart, handlecartClear }) {
+  const navigate = useNavigate();
   const totalPrice = cartItem.reduce((price, item) => price + item.prices, 0);
+  const makepayment = (token) => {
+    const body = {
+      token,
+      totalPrice,
+    };
+
+    fetch("http://localhost:7000/payment", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div className="cart">
       <div>
@@ -22,8 +43,8 @@ export function Cart({ cartItem, addToCart, removeFromCart, handlecartClear }) {
         )}
       </div>
       <div className="cart-items">
-        {cartItem.map((item, id) => (
-          <div key={item.id} className="item">
+        {cartItem.map((item,_id) => (
+          <div  className="item" key={item._id}>
             <img src={item.image} alt={item.name} className="image-cart" />
             <p className="name">{item.name}</p>
 
@@ -44,8 +65,17 @@ export function Cart({ cartItem, addToCart, removeFromCart, handlecartClear }) {
         <div> TotalPrice -{totalPrice} Rs/-</div>
       </div>
       <div>
-      <Button variant="contained" color="error" onClick={()=>navigate("/payment")}>Order Now</Button>
-        
+        <StripeCheckout
+          name="Order Pizza"
+          amount={totalPrice * 100}
+          currency="INR"
+          stripeKey="pk_test_51N2wUgSGE96adayZTJAYBtxqHEcQM4kPomEAkKz2LWMlLA1Q6KBAaSW2DiEwWp9L6aWTPgxOIWWlpP4humY7uKwh004mHkBAiI"
+          token={makepayment}
+        >
+          <Button variant="contained" color="error">
+            Order Now
+          </Button>
+        </StripeCheckout>
       </div>
     </div>
   );

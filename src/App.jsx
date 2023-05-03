@@ -15,6 +15,9 @@ import { useEffect, useState } from "react";
 import { Payment } from "./Payment";
 import { Login } from "./Login";
 import { Home } from "./Home";
+import { ForgetPass } from "./ForgetPass";
+import { VerifyOtp } from "./VerifyOtp";
+import { SetPassword } from "./SetPassword";
 
 function checkAuth(data) {
   if (data.status === 401) {
@@ -26,6 +29,7 @@ function checkAuth(data) {
 
 export default function App() {
   const [pizzalist, setPizzaList] = useState([]);
+
   const getPizza = () => {
     fetch("http://localhost:7000/pizzalist", {
       method: "GET",
@@ -52,26 +56,27 @@ export default function App() {
   };
 
   return (
-    <div className="App">
-      <div>
-        <AppBar position="static">
-          <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              PIZZA APP
-            </Typography>
-            <Button color="inherit" onClick={() => navigate("/")}>
-              Home
-            </Button>
+    <div>
+      <AppBar position="static" color="error">
+        <Toolbar>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            PIZZA APP
+          </Typography>
+          <Button color="inherit" onClick={() => navigate("/")}>
+            Home
+          </Button>
 
-            <Button color="inherit" onClick={() => navigate("/signup")}>
-              Signup
-            </Button>
-            <Button color="inherit" onClick={() => navigate("/cart")}>
-              <ShoppingCartIcon />
-              {cartItem.length === 0 ? "" : cartItem.length}
-            </Button>
-          </Toolbar>
-        </AppBar>
+          <Button color="inherit" onClick={() => navigate("/pizzalist")}>
+            menu
+          </Button>
+
+          <Button color="inherit" onClick={() => navigate("/cart")}>
+            <ShoppingCartIcon />
+            {cartItem.length === 0 ? "" : cartItem.length}
+          </Button>
+        </Toolbar>
+      </AppBar>
+      <div className="App">
         <Routes>
           <Route
             path="/pizzalist"
@@ -86,6 +91,12 @@ export default function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/setpassword" element={<SetPassword />} />
+
+          <Route path="/verifyotp" element={<VerifyOtp />} />
+
+          <Route path="/login/forgetpassword" element={<ForgetPass />} />
+
           <Route path="/" element={<Home />} />
 
           <Route

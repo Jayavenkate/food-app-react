@@ -1,5 +1,6 @@
 body {
   margin: 0px;
+  background-image: url("https://img.freepik.com/free-photo/top-view-pizza-topping-arrangement_23-2148601651.jpg?w=2000");
 }
 .App {
   flex-wrap: wrap;
@@ -9,10 +10,14 @@ body {
   align-items: center;
   
 }
+
 .pizza {
-  border: 1px solid black;
-  max-width: 300px;
+  /* border: 1px solid black; */
+  width: 300px;
   height: 490px;
+  
+ 
+  
 }
 .image {
   max-width: 300px;
@@ -25,19 +30,21 @@ body {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 36px;
   padding-top: 200px;
-  margin-left: 100px;
-  margin-right: 100px;
+  padding-bottom: 50px;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE70dqxAms8FBKG3CB_IgqnyQPvz1JfpCgHA&usqp=CAU");
+  
 }
 .cart {
-  margin: 30px auto;
+  margin: 30px ;
   display: flex;
   flex-wrap: wrap;
   background-color: orange;
   flex-direction: column;
   height: min-content;
   width: 700px;
+
   align-items: center;
   justify-content: center;
   border: 1px solid black;
@@ -122,4 +129,11 @@ body {
 }
 .sign-btn {
   cursor: pointer;
+}
+.app-bar{
+  margin: 0px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ flex-wrap: wrap;
 }
