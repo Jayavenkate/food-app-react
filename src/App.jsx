@@ -18,6 +18,7 @@ import { Home } from "./Home";
 import { ForgetPass } from "./ForgetPass";
 import { VerifyOtp } from "./VerifyOtp";
 import { SetPassword } from "./SetPassword";
+import { API } from "./global";
 
 function checkAuth(data) {
   if (data.status === 401) {
@@ -31,7 +32,7 @@ export default function App() {
   const [pizzalist, setPizzaList] = useState([]);
 
   const getPizza = () => {
-    fetch("http://localhost:7000/pizzalist", {
+    fetch(`${API}/pizzalist`, {
       method: "GET",
       headers: {
         "x-auth-token": localStorage.getItem("token"),

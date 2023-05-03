@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 
 import { useState } from "react";
+import { API } from "./global";
 
 export function VerifyOtp() {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ export function VerifyOtp() {
 
     onSubmit: async (values) => {
       console.log(values);
-      const data = await fetch("http://localhost:7000/verifyotp", {
+      const data = await fetch(`${API}/verifyotp`, {
         method: "POST",
         headers: {
           "content-type": "application/json",

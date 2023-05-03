@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 
 import * as yup from "yup";
 import { useState } from "react";
+import { API } from "./global";
 
 const formValidationSchema = yup.object({
   email: yup.string().email().required("Email address is required"),
@@ -24,7 +25,7 @@ export function Login() {
       validationSchema: formValidationSchema,
       onSubmit: async (values) => {
         console.log(values);
-        const data = await fetch("http://localhost:7000/login", {
+        const data = await fetch(`${API}/login`, {
           method: "POST",
           headers: {
             "content-type": "application/json",

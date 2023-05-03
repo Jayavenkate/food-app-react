@@ -4,6 +4,7 @@ import { Button } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import { useNavigate } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
+import { API } from "./global";
 
 export function Cart({ cartItem, removeFromCart, handlecartClear }) {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ export function Cart({ cartItem, removeFromCart, handlecartClear }) {
       totalPrice,
     };
 
-    fetch("http://localhost:7000/payment", {
+    fetch(`${API}/payment`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,8 +44,8 @@ export function Cart({ cartItem, removeFromCart, handlecartClear }) {
         )}
       </div>
       <div className="cart-items">
-        {cartItem.map((item,_id) => (
-          <div  className="item" key={item._id}>
+        {cartItem.map((item, _id) => (
+          <div className="item" key={item._id}>
             <img src={item.image} alt={item.name} className="image-cart" />
             <p className="name">{item.name}</p>
 

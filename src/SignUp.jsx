@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import Checkbox from "@mui/material/Checkbox";
 import * as yup from "yup";
 import { useState } from "react";
+import { API } from "./global";
 
 const formValidationSchema = yup.object({
   name: yup.string().required("required"),
@@ -15,9 +16,9 @@ const formValidationSchema = yup.object({
 export function SignUp() {
   // const [show,setshow]= useState(false);
   const navigate = useNavigate();
-  const reDirect =()=>{
+  const reDirect = () => {
     navigate("/login");
-  }
+  };
   // const togglePassword=()=>{
   //   setshow(!show);
   // }
@@ -31,16 +32,16 @@ export function SignUp() {
       validationSchema: formValidationSchema,
       onSubmit: async (values) => {
         console.log(values);
-        const data = await fetch("http://localhost:7000/signup",{
-          method:"POST",
-          headers :{
-            "content-type":"application/json"
+        const data = await fetch(`${API}/signup`, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
           },
-          body:JSON.stringify(values),
+          body: JSON.stringify(values),
         });
         const result = await data.json();
         console.log(data);
-        navigate("/login")
+        navigate("/login");
       },
     });
   return (
