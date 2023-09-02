@@ -60,7 +60,7 @@ export function Login() {
             error={touched.email && errors.email}
             helperText={touched.email && errors.email ? errors.email : null}
           />
-          <p>priya@gmail.com</p>
+          {/* <p>priya@gmail.com</p> */}
           <TextField
             name="password"
             value={values.password}
@@ -73,7 +73,7 @@ export function Login() {
               touched.password && errors.password ? errors.password : null
             }
           />
-          <p>priyakumar123</p>
+          {/* <p>priyakumar123</p> */}
           {/* <span>
           <Checkbox onClick={togglePassword}aria-label="Checkbox demo"/>
             show password</span> */}
