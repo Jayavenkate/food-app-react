@@ -1,13 +1,9 @@
-// export function ForgetPass() {
-//   return <div>forget pass</div>;
-// }
 import { Button, Card, CardContent } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 
 import * as yup from "yup";
-import { useState } from "react";
 import { API } from "./global";
 
 const formValidationSchema = yup.object({

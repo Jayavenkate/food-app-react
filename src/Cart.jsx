@@ -1,10 +1,8 @@
 import DeleteIcon from "@mui/icons-material/Delete";
-import ClearIcon from "@mui/icons-material/Clear";
 import { Button } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import { useNavigate } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
-import { API } from "./global";
 
 export function Cart({ cartItem, removeFromCart, handlecartClear }) {
   const navigate = useNavigate();
@@ -14,20 +12,8 @@ export function Cart({ cartItem, removeFromCart, handlecartClear }) {
       token,
       totalPrice,
     };
-
-    fetch(`${API}/payment`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    console.log(body);
+    navigate("/payment", { state: { token: token.created } });
   };
   return (
     <div className="cart">
@@ -37,7 +23,6 @@ export function Cart({ cartItem, removeFromCart, handlecartClear }) {
       {cartItem.length === 0 && <div>No items Are added</div>}
       <div className="clear-button">
         {cartItem.length >= 1 && (
-          // <Button onClick={handlecartClear} >Clear All</Button>
           <Button variant="contained" onClick={handlecartClear} color="error">
             Clear All
           </Button>
@@ -50,7 +35,6 @@ export function Cart({ cartItem, removeFromCart, handlecartClear }) {
             <p className="name">{item.name}</p>
 
             <div>
-              {/* <button onClick={() => addToCart(item)}>+</button> */}
               <button className="btn" onClick={() => removeFromCart(item)}>
                 <IconButton color="error">
                   <DeleteIcon />
@@ -72,6 +56,7 @@ export function Cart({ cartItem, removeFromCart, handlecartClear }) {
           currency="INR"
           stripeKey="pk_test_51N2wUgSGE96adayZTJAYBtxqHEcQM4kPomEAkKz2LWMlLA1Q6KBAaSW2DiEwWp9L6aWTPgxOIWWlpP4humY7uKwh004mHkBAiI"
           token={makepayment}
+          shippingAddress
         >
           <Button variant="contained" color="error">
             Order Now
