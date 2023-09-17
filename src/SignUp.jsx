@@ -2,9 +2,7 @@ import { Button, Card, CardContent } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import Checkbox from "@mui/material/Checkbox";
 import * as yup from "yup";
-import { useState } from "react";
 import { API } from "./global";
 
 const formValidationSchema = yup.object({
@@ -13,14 +11,11 @@ const formValidationSchema = yup.object({
   password: yup.string().required("password required").min(8),
 });
 export function SignUp() {
-  // const [show,setshow]= useState(false);
   const navigate = useNavigate();
   const reDirect = () => {
     navigate("/login");
   };
-  // const togglePassword=()=>{
-  //   setshow(!show);
-  // }
+
   const { values, handleSubmit, handleChange, handleBlur, touched, errors } =
     useFormik({
       initialValues: {
@@ -80,9 +75,7 @@ export function SignUp() {
               touched.password && errors.password ? errors.password : null
             }
           />
-          {/* <span>
-          <Checkbox onClick={togglePassword}aria-label="Checkbox demo"/>
-            show password</span> */}
+
           <Button
             type="submit"
             color="success"

@@ -5,8 +5,10 @@ export function Payment() {
 
   return (
     <div className="payment">
-      <p>Your order have been placed successfully 😍🍕</p>
-      <p className="token">Token Number: #{token}</p>
+      <p>
+        <span style={{ color: "red" }}>{token}</span> Your order have been
+        placed successfully 😍🍕
+      </p>
     </div>
   );
 }
