@@ -62,6 +62,7 @@ export function Login() {
           />
 
           <TextField
+            type="password"
             name="password"
             value={values.password}
             onChange={handleChange}
