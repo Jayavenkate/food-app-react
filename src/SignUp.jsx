@@ -39,6 +39,7 @@ export function SignUp() {
       },
     });
   return (
+    <div className="div-wrapper">
     <form onSubmit={handleSubmit}>
       <Card className="signup" elevation={4}>
         <h2>SignUp </h2>
@@ -93,5 +94,6 @@ export function SignUp() {
         </h5>
       </Card>
     </form>
+    </div>
   );
 }

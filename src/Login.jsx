@@ -46,6 +46,7 @@ export function Login() {
       },
     });
   return (
+    <div className="div-wrapper">
     <form onSubmit={handleSubmit}>
       <Card className="signup" elevation={4}>
         <h2>Login </h2>
@@ -101,5 +102,6 @@ export function Login() {
         </Button>
       </Card>
     </form>
+    </div>
   );
 }

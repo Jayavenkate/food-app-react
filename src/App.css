@@ -27,7 +27,7 @@ body {
   justify-content: center;
   flex-wrap: wrap;
   gap: 36px;
-  padding-top: 200px;
+  padding-top: 30px;
   padding-bottom: 50px;
   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE70dqxAms8FBKG3CB_IgqnyQPvz1JfpCgHA&usqp=CAU");
 }
@@ -118,12 +118,10 @@ body {
   justify-content: center;
 }
 .signup {
-  /* padding-left: 50px; */
-  margin-left: 700px;
-  margin-top: 100px;
-  margin-right: 700px;
+ 
   padding-top: 20px;
   padding-bottom: 20px;
+
 }
 .sign-btn {
   cursor: pointer;
@@ -134,4 +132,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+}
+.div-wrapper{
+ margin-top: 20px;
 }
